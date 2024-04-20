@@ -49,7 +49,7 @@ public class GaleriaDeArte {
 	
 	public void agregarUsuario() 
 	{
-		
+		return "hola"
 	}
 
 	
