@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>lib/org.json-1.6-20240205.jar</name>
+			<type>1</type>
+			<location>C:/Users/camil/OneDrive - Universidad de los Andes/Documentos/camilo/DPOO workspace/nTaller3y4AerolineaEsqueleto/lib/org.json-1.6-20240205.jar</location>
+		</link>
+	</linkedResources>
 </projectDescription>

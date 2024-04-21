@@ -109,6 +109,9 @@ public class Cliente extends Usuario {
 		Subasta subasta = GaleriaDeArte.getSubasta();
 		subasta.verificarClienteSubasta(this);
 	}
+	
+	
+	//
 }
 
 
