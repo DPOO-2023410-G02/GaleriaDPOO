@@ -38,10 +38,10 @@ public class Compra {
         	cajero.registarPago(comprador, piezaOfertada); 
         	
         	comprador.añadirCompras(this);
+         	
+        	administrador.eliminarPiezaPropietario(piezaOfertada);
         	
         	comprador.añadirPiezas(piezaOfertada);
-        	
-        	administrador.eliminarPiezaPropietario(piezaOfertada);
         	
         }
         else {

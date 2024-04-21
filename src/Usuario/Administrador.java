@@ -49,4 +49,27 @@ public class Administrador extends Usuario {
     public void hacerNoDisponible(Pieza piezaOfertada) {
     	piezaOfertada.hacerNoDisponible();
     }
+
+    
+    // SUBASTA
+    
+	public boolean verificarUsuarioSubasta(Cliente cliente, int valorMinimo) {
+		
+		
+    	if(valorMinimo > cliente.getValorMaximo()) {
+    		
+    		int saldo = cliente.getSaldo();	
+    		if (valorMinimo > saldo)
+    			
+    			return false;
+    		else {
+    			cliente.setValorMaximo(saldo);
+    			return true;
+    		}
+    	}
+    	else {
+    		
+    		return true;
+    	}
+	}
 }

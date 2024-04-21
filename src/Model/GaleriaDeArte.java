@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import Pieza.Pieza;
@@ -22,7 +23,7 @@ public class GaleriaDeArte {
 	private static Inventario inventario;
 	
 	//subasta actual en la galeria
-	private Subasta subasta;
+	private static Subasta subasta;
 	
 	private static Administrador administrador;
 
@@ -30,14 +31,19 @@ public class GaleriaDeArte {
 	
 	private static Cajero cajero;
 	
+	private List<List<String>> registrosPorSubasta;
+	
 	// Se Inicializa una galeria de arte con los contenedores de información
 	public GaleriaDeArte()
 	
 	{
 		usuarios = new HashMap<String, Usuario>();
 		inventario = new Inventario();
-		subasta = new Subasta();
+		subasta = null;
 		administrador = new Administrador("202111146", "a.chaparrod", "Andres");
+		operador = new Operador("" , "" , "");
+		cajero = new Cajero("" , "" , "");
+		registrosPorSubasta = new ArrayList<>();
 	}
 	
 	
@@ -84,4 +90,14 @@ public class GaleriaDeArte {
 	public static Inventario getInventario() {
 		return inventario;
 	}
+
+	public static Subasta getSubasta() {
+		return subasta;
+	}
+
+
+    public static void setSubasta(Subasta subasta) {
+        GaleriaDeArte.subasta = subasta;
+    }
+	
 }

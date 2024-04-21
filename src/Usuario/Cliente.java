@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Compra;
+import Model.GaleriaDeArte;
+import Model.Subasta;
 import Pieza.Pieza;
 
 public class Cliente extends Usuario {
@@ -82,12 +84,30 @@ public class Cliente extends Usuario {
 	}
 	
 	public void añadirPiezas(Pieza pieza) {
+		pieza.setPropietario(this);
 		piezas.add(pieza);
+		
 	}
 	
 	public void eliminarPieza(Pieza pieza) {
 		piezas.remove(pieza);
 		añadirPiezasPasadas(pieza);
+	}
+	
+	
+	
+	//SUBASTA
+	
+	public void realizarOfertaSubasta( String titulo, int puja) {
+		Subasta subasta = GaleriaDeArte.getSubasta();
+		
+		subasta.registrarOfertaSubasta(titulo, puja, this);
+		
+	}
+	
+	public void ingresarASubasta() {
+		Subasta subasta = GaleriaDeArte.getSubasta();
+		subasta.verificarClienteSubasta(this);
 	}
 }
 

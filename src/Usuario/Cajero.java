@@ -18,4 +18,10 @@ public class Cajero extends Usuario {
     	
     	comprador.setSaldo(comprador.getSaldo()-piezaOfertada.getPrecioCompra());
     }
+    
+    public void registarPagoSubasta(Cliente comprador, int valorPago){
+    	
+    	comprador.setSaldo(comprador.getSaldo()- valorPago);
+    }
+    
 }

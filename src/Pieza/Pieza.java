@@ -89,4 +89,9 @@ public class Pieza {
         //Si es True significa que la pieza no ah superado la fecha que entra como parametro
         return fechaConsignacionLocalDate.isAfter(fecha);
 	}
+
+	public void setPropietario(Cliente propietario) {
+		this.propietario = propietario;
+	}
+	
 }
