@@ -2,26 +2,50 @@ package Model;
 
 import Pieza.Pieza;
 import Usuario.Administrador;
+import Usuario.Cajero;
 import Usuario.Cliente;
 import Model.GaleriaDeArte;
 
 public class Compra {
-		
 	
-	public void registrarCompra(int Oferta, Pieza piezaOfertada, Cliente cliente) {
+	private Administrador administrador;
 	
-		piezaOfertada.hacerNoDisponible();
+	private Cajero cajero;
+	
+	private int precio;
+	
+	private Pieza pieza;
+	
+	public Compra(Pieza piezaOfertada) {
 		
-        Administrador administrador = GaleriaDeArte.getAdministrador();
+		administrador = GaleriaDeArte.getAdministrador();
+		cajero = GaleriaDeArte.getCajero();
+		precio = piezaOfertada.getPrecioCompra();
+		pieza = piezaOfertada;
+	}
+	
+	
+	public void registrarCompra(Pieza piezaOfertada, Cliente comprador) {		
+		
+		administrador.hacerNoDisponible(piezaOfertada);
         
-        boolean llave = administrador.verificarUsuario(cliente); 
-		
-        if(llave) {
+        boolean llave1 = administrador.verificarUsuario(comprador, piezaOfertada); 
+
+        if(llave1) {
         	
-        	Inventario inventario = GaleriaDeArte.getInventario();
-        	inventario.eliminarPieza(piezaOfertada.getLugar(), piezaOfertada);
-        	cliente.añadirPiezasPasadas(this);
+        	administrador.eliminarPiezaInventario(piezaOfertada.getLugar(), piezaOfertada);
         	
+        	cajero.registarPago(comprador, piezaOfertada); 
+        	
+        	comprador.añadirCompras(this);
+        	
+        	comprador.añadirPiezas(piezaOfertada);
+        	
+        	administrador.eliminarPiezaPropietario(piezaOfertada);
+        	
+        }
+        else {
+        	piezaOfertada.hacerDisponible();
         }
 	}
 }

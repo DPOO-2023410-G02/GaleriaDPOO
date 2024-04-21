@@ -1,5 +1,7 @@
 package Usuario;
 
+import Pieza.Pieza;
+
 public class Cajero extends Usuario {
 	
 	public static final String CAJERO = "Cajero";
@@ -12,8 +14,8 @@ public class Cajero extends Usuario {
         return CAJERO;
     }
     
-    public boolean verificarPago(Cliente cliente) {
+    public void registarPago(Cliente comprador, Pieza piezaOfertada){
     	
-    	return true;
+    	comprador.setSaldo(comprador.getSaldo()-piezaOfertada.getPrecioCompra());
     }
 }

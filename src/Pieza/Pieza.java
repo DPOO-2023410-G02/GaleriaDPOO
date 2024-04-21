@@ -1,6 +1,8 @@
 package Pieza;
 import java.time.LocalDate;
 
+import Usuario.Cliente;
+
 public class Pieza {
 	
 	private String codigoPieza;
@@ -21,8 +23,10 @@ public class Pieza {
 	
 	private String lugar;
 	
+	private Cliente propietario;
+	
     public Pieza(String codigoPieza, String anoCreacion, String autor, String lugarCreacion,
-            String titulo, String fechaConsignacion, int precioCompra, boolean disponible) {
+            String titulo, String fechaConsignacion, int precioCompra, Cliente propietario) {
    this.codigoPieza = codigoPieza;
    this.anoCreacion = anoCreacion;
    this.autor = autor;
@@ -30,7 +34,8 @@ public class Pieza {
    this.titulo = titulo;
    this.fechaConsignacion = fechaConsignacion;
    this.precioCompra = precioCompra;
-   this.disponible = disponible;
+   this.disponible = true;
+   this.propietario = propietario;
 }
 	
 	public String getCodigoPieza() {
@@ -65,6 +70,9 @@ public class Pieza {
 		return disponible;
 	}
 	
+	public Cliente getPropietario() {
+		return propietario;
+	}
 	public void hacerDisponible() {
 		this.disponible = true;
 	}

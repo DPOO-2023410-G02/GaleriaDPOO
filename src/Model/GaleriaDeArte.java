@@ -10,7 +10,6 @@ import Usuario.Administrador;
 import Usuario.Cajero;
 import Usuario.Cliente;
 import Usuario.Operador;
-import Usuario.Propietario;
 import Usuario.Usuario;
 
 
@@ -68,8 +67,6 @@ public class GaleriaDeArte {
 		usuarios.put(login, new Cliente (password, login, nombre));
 		else if (tipo.equals("Operador"))
 		usuarios.put(login, new Operador (password, login, nombre));
-		else if (tipo.equals("Propietario"))
-		usuarios.put(login, new Propietario (password, login, nombre));
 		else if (tipo.equals("Cajero"))
 		usuarios.put(login, new Cajero (password, login, nombre));
 	}
