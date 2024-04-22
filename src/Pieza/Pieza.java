@@ -26,7 +26,8 @@ public class Pieza {
 	private Cliente propietario;
 	
     public Pieza(String codigoPieza, String anoCreacion, String autor, String lugarCreacion,
-            String titulo, String fechaConsignacion, int precioCompra, Cliente propietario) {
+            String titulo, String fechaConsignacion, int precioCompra, Cliente propietario, String lugar) {
+    	
    this.codigoPieza = codigoPieza;
    this.anoCreacion = anoCreacion;
    this.autor = autor;
@@ -36,6 +37,7 @@ public class Pieza {
    this.precioCompra = precioCompra;
    this.disponible = true;
    this.propietario = propietario;
+   this.lugar = lugar;
 }
 	
 	public String getCodigoPieza() {

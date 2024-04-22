@@ -79,6 +79,7 @@ public class Cliente extends Usuario {
 	public void añadirPiezasPasadas(Pieza pieza) {
 		piezasPasadas.add(pieza);
 	}
+	
 	public List<Pieza> getPasadas() {
 		return piezas;
 	}
@@ -96,6 +97,20 @@ public class Cliente extends Usuario {
 	
 	
 	
+	public void setCompras(List<Compra> compras) {
+		this.compras = compras;
+	}
+
+
+	public void setPiezasPasadas(List<Pieza> piezasPasadas) {
+		this.piezasPasadas = piezasPasadas;
+	}
+
+
+	public void setPiezas(List<Pieza> piezas) {
+		this.piezas = piezas;
+	}
+
 	//SUBASTA
 	
 	public void realizarOfertaSubasta( String titulo, int puja) {

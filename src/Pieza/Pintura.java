@@ -11,8 +11,8 @@ public class Pintura extends Pieza {
 	private List<String> caracteristicas;
 	
 	public Pintura(String codigoPieza, String anoCreacion, String autor, String lugarCreacion, String titulo,
-			String fechaConsignacion, int precioCompra, Cliente propietario, List<String> caracteristicasPieza) {
-		super(codigoPieza, anoCreacion, autor, lugarCreacion, titulo, fechaConsignacion, precioCompra, propietario);
+			String fechaConsignacion, int precioCompra, Cliente propietario, String lugar, List<String> caracteristicasPieza) {
+		super(codigoPieza, anoCreacion, autor, lugarCreacion, titulo, fechaConsignacion, precioCompra, propietario, lugar);
 		caracteristicas = caracteristicasPieza;
 		
 	}

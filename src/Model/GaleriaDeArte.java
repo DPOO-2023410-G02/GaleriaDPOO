@@ -40,13 +40,30 @@ public class GaleriaDeArte {
 		usuarios = new HashMap<String, Usuario>();
 		inventario = new Inventario();
 		subasta = null;
-		administrador = new Administrador("202111146", "a.chaparrod", "Andres");
-		operador = new Operador("" , "" , "");
-		cajero = new Cajero("" , "" , "");
+		administrador = null;
+		operador = null;
+		cajero = null;
 		registrosPorSubasta = new ArrayList<>();
 	}
 	
+	public void AgregarAdministrador(String password, String login, String name) {
+		administrador = new Administrador(password, login, name);
+	}
 	
+	public void AgregarOperador(String password, String login, String name) {
+		operador = new Operador(password, login, name);
+	}
+	
+	public void AgregarCajero(String password, String login, String name) {
+		cajero = new Cajero(password, login, name);
+	}
+	
+	
+	
+	public List<List<String>> getRegistrosPorSubasta() {
+		return registrosPorSubasta;
+	}
+
 	//Se obtiene una lista con todos los usuarios
 	public Collection<Usuario> getUsuarios()
 	{
@@ -77,6 +94,9 @@ public class GaleriaDeArte {
 		usuarios.put(login, new Cajero (password, login, nombre));
 	}
 
+	public void AgregarUsuario(Usuario usuario) {
+		usuarios.put(usuario.getLogin(), usuario);
+	}
 
 	public static Administrador getAdministrador() {
 		return administrador;
@@ -99,5 +119,10 @@ public class GaleriaDeArte {
     public static void setSubasta(Subasta subasta) {
         GaleriaDeArte.subasta = subasta;
     }
+
+	public static void setInventario(Inventario inventario) {
+		GaleriaDeArte.inventario = inventario;
+	}
 	
+    
 }

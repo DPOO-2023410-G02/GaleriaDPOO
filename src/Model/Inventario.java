@@ -85,5 +85,20 @@ public class Inventario {
             }
         }
 	}
+
+	public void setPiezasColeccioon(List<Pieza> piezasColeccioon) {
+		this.piezasColeccioon = piezasColeccioon;
+	}
+
+	public void setPiezasBodega(List<Pieza> piezasBodega) {
+		this.piezasBodega = piezasBodega;
+	}
+
+	public void setPiezasPasadas(List<Pieza> piezasPasadas) {
+		this.piezasPasadas = piezasPasadas;
+	}
+	
+	
+	
 	
 }

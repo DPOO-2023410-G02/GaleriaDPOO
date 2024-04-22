@@ -16,6 +16,7 @@ public class Compra {
 	
 	private Pieza pieza;
 	
+	
 	public Compra(Pieza piezaOfertada) {
 		
 		administrador = GaleriaDeArte.getAdministrador();
@@ -48,4 +49,15 @@ public class Compra {
         	piezaOfertada.hacerDisponible();
         }
 	}
+
+
+	public int getPrecio() {
+		return precio;
+	}
+
+
+	public Pieza getPieza() {
+		return pieza;
+	}
+	
 }
