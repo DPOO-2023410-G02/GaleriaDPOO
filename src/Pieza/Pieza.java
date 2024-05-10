@@ -84,14 +84,25 @@ public class Pieza {
 	public String getLugar() {
 		return lugar;
 	}
-	public boolean verificarConsignacionPieza(LocalDate fecha) {
-		
-        LocalDate fechaConsignacionLocalDate = LocalDate.parse(fechaConsignacion); // Suponiendo que fechaConsignacion es una cadena en formato "yyyy-MM-dd"
-        //Devuelve True si la fecha de parametro va andes que la fecha de consignacion
-        //Si es True significa que la pieza no ah superado la fecha que entra como parametro
-        return fechaConsignacionLocalDate.isAfter(fecha);
+	
+	
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
+	public boolean verificarConsignacionPieza() {
+	    // Obtener la fecha actual
+	    LocalDate fechaActual = LocalDate.now();
+	    
+	    // Convertir la fecha de consignación a LocalDate (suponiendo que fechaConsignacion es una cadena en formato "yyyy-MM-dd")
+	    LocalDate fechaConsignacionLocalDate = LocalDate.parse(fechaConsignacion);
+	    
+	    // Devolver true si la fecha actual es anterior o igual a la fecha de consignación
+	    // Devolver false si la fecha actual es posterior a la fecha de consignación
+	    return !fechaActual.isAfter(fechaConsignacionLocalDate);
+	}
+	
+	
 	public void setPropietario(Cliente propietario) {
 		this.propietario = propietario;
 	}

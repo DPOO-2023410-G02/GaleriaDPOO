@@ -75,12 +75,12 @@ public class Inventario {
 		LocalDate fechaActual = LocalDate.now();
 
         for (Pieza pieza : getPiezasBodega()) {
-            if (pieza.verificarConsignacionPieza(fechaActual)) {
+            if (pieza.verificarConsignacionPieza()) {
             	eliminarPieza(BODEGA,  pieza);
             }
         }
         for (Pieza pieza : getPiezasColeccioon()) {
-            if (pieza.verificarConsignacionPieza(fechaActual)) {
+            if (pieza.verificarConsignacionPieza()) {
             	eliminarPieza(COLECCION,  pieza);
             }
         }
@@ -98,7 +98,25 @@ public class Inventario {
 		this.piezasPasadas = piezasPasadas;
 	}
 	
+	public Pieza getPiezaBodega(String codigoPieza) {
+		Pieza piezaElegida = null;
+		for (Pieza pieza : piezasBodega) {
+			if (pieza.getCodigoPieza().equals(codigoPieza)){
+				piezaElegida = pieza;
+			}
+		}
+		return piezaElegida;
+	}
 	
+	public Pieza getPiezaColeccion(String codigoPieza) {
+		Pieza piezaElegida = null;
+		for (Pieza pieza : piezasColeccioon) {
+			if (pieza.getCodigoPieza().equals(codigoPieza)){
+				piezaElegida = pieza;
+			}
+		}
+		return piezaElegida;
+	}
 	
 	
 }

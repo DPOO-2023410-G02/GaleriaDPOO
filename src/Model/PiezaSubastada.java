@@ -22,6 +22,7 @@ public class PiezaSubastada {
 		
 	}
 
+
 	public int getValorInicialSubasta() {
 		return valorInicialSubasta;
 	}

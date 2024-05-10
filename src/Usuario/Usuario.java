@@ -11,7 +11,7 @@ public abstract class Usuario {
 	public Usuario(String password, String login, String nombre) {
 		this.password = password;
 		this.login = login;
-		this.login = login;
+		this.nombre = nombre;
 	}
 
 	public String getPassword() {

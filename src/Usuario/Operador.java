@@ -35,6 +35,7 @@ public class Operador extends Usuario {
         return resultado;
     }
 
+    
     public void finalizarSubastaOperador() {
     	Subasta subasta = GaleriaDeArte.getSubasta();
     	subasta.finalizarSubasta();

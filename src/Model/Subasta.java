@@ -41,7 +41,7 @@ public class Subasta {
 	{
 		HashMap<String, PiezaSubastada> piezasSubasta = new HashMap<String , PiezaSubastada>();
 		for(Pieza pieza:  piezasParaSubastar) {
-			piezasSubasta.put(pieza.getTitulo(), new PiezaSubastada(pieza.getPrecioCompra(), (int)(pieza.getPrecioCompra()* 1.1), pieza ) );			
+			piezasSubasta.put(pieza.getTitulo(), new PiezaSubastada(pieza.getPrecioCompra(), (int)(pieza.getPrecioCompra()* 1.1),pieza ) );			
 			
 		}
 		return piezasSubasta;

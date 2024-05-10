@@ -22,7 +22,14 @@ import org.json.JSONObject;
 
 public class PersistenciaUsuarios {
 	
-	private JSONArray salvarUsuarios( GaleriaDeArte galeria)
+	private List<Pieza> piezasCargadas;
+	
+	public PersistenciaUsuarios() {
+		
+		piezasCargadas = new ArrayList<Pieza>();
+	}
+	
+	public JSONArray salvarUsuarios( GaleriaDeArte galeria)
     {
         JSONArray jUsuarios = new JSONArray( );
         
@@ -170,6 +177,8 @@ public class PersistenciaUsuarios {
     	return jPieza;
     	
     }
+    
+    
     
     public void CargarUsuarios(GaleriaDeArte galeria, JSONArray jUsuarios) {
     	

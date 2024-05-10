@@ -1,14 +1,20 @@
 package Usuario;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import Model.Compra;
 import Model.GaleriaDeArte;
+import Model.Inventario;
 import Model.Subasta;
 import Pieza.Pieza;
+import Pieza.GeneradorCodigosPieza;
 
 public class Cliente extends Usuario {
+	
+	private GeneradorCodigosPieza generadorCodigos;
 	
 	public static final String CLIENTE = "Cliente";
 	
@@ -29,6 +35,7 @@ public class Cliente extends Usuario {
 	    piezas = new ArrayList<Pieza>();
 	    valorMaximo = 0;
 	    saldo = 0;
+	    generadorCodigos = GeneradorCodigosPieza.getInstance();
 	}
 
     
@@ -96,7 +103,6 @@ public class Cliente extends Usuario {
 	}
 	
 	
-	
 	public void setCompras(List<Compra> compras) {
 		this.compras = compras;
 	}
@@ -125,8 +131,71 @@ public class Cliente extends Usuario {
 		subasta.verificarClienteSubasta(this);
 	}
 	
+	public void registrarPieza(String anoCreacion, String autor, String lugarCraecion, String titulo, int precioCompra) {
+		//CODIGO PIEZA
+		String codigoPieza = generadorCodigos.generarCodigo();
+		
+		
+		//FECHA CONSIGNACIÓN
+        // Obtener la fecha actual
+        LocalDate fechaActual = LocalDate.now();
+
+        // Añadir 2 meses a la fecha actual
+        LocalDate fechaDosMesesDespues = fechaActual.plusMonths(2);
+
+        // Formatear la fecha en el formato "yyyy-MM-dd"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fechaFormateada = fechaDosMesesDespues.format(formatter);
+		
+        // LUGAR GALERIA
+        String lugarGaleria; 
+        if(precioCompra > 10000000) {
+        	lugarGaleria = "Coleccion";
+        	
+        }else {
+        	lugarGaleria = "Bodega";
+        }
+        
+  
+		Pieza pieza = new Pieza(codigoPieza, anoCreacion, autor, lugarCraecion, titulo, fechaFormateada, precioCompra, this, null);
+        
 	
-	//
+		piezas.add(pieza);
+	}
+	
+	public void RealizarConsignacion(String codigoPieza) {
+		Pieza pieza = buscarPieza(codigoPieza);
+ 
+		Inventario inventario = GaleriaDeArte.getInventario();
+        if(pieza.getPrecioCompra() > 10000000) {  
+        	pieza.setLugar("Coleccion");
+        	inventario.agregarPieza("Coleccion", pieza);
+        }else {
+        	pieza.setLugar("Bodega");
+        	inventario.agregarPieza("Bodega", pieza);
+        }
+        
+        
+        
+		
+	}
+	
+	public Pieza buscarPieza(String codigoPieza) {
+		Pieza piezaBuscada = null;
+		for (Pieza pieza: piezas) {
+			if(codigoPieza.equals(pieza.getCodigoPieza())) {
+				piezaBuscada = pieza;
+			}
+		}
+		return piezaBuscada;
+	}
+	
+	
+	
+	public void agregarSaldo(int valor){
+		saldo += valor;
+	}
+	
 }
 
 
