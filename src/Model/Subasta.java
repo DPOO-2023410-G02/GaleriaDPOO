@@ -107,5 +107,10 @@ public class Subasta {
 
         return valorMinimo;
     }
+
+	public List<Cliente> getClientesSubasta() {
+		return clientesSubasta;
+	}
+	
 	
 }
