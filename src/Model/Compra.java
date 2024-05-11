@@ -4,6 +4,9 @@ import Pieza.Pieza;
 import Usuario.Administrador;
 import Usuario.Cajero;
 import Usuario.Cliente;
+
+import java.time.LocalDate;
+
 import Model.GaleriaDeArte;
 
 public class Compra {
@@ -43,6 +46,13 @@ public class Compra {
         	administrador.eliminarPiezaPropietario(piezaOfertada);
         	
         	comprador.añadirPiezas(piezaOfertada);
+        	
+        	piezaOfertada.getDuenos().add(comprador);
+        	
+        	piezaOfertada.setPrecioVenta(precio);
+        	
+        	LocalDate fechaActual = LocalDate.now();
+        	piezaOfertada.setFechaVenta(fechaActual.toString());
         	
         }
         else {

@@ -15,12 +15,14 @@ public class Inventario {
 	private List<Pieza> piezasPasadas;
 	public static final String BODEGA = "Bodega";
 	public static final String COLECCION = "Coleccion";
+	private List<Artista> artistas;
 	
 	public Inventario() 
 	{
 	piezasBodega = new ArrayList<Pieza>();
 	piezasColeccioon = new ArrayList<Pieza>();
 	piezasPasadas = new ArrayList<Pieza>();
+	artistas = new ArrayList<Artista>();
 	}
 	
 	public int getCapacidad() 
@@ -117,6 +119,11 @@ public class Inventario {
 		}
 		return piezaElegida;
 	}
+
+	public List<Artista> getArtistas() {
+		return artistas;
+	}
+	
 	
 	
 }

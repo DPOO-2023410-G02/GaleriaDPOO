@@ -1,5 +1,7 @@
 package Pieza;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import Usuario.Cliente;
 
@@ -25,6 +27,12 @@ public class Pieza {
 	
 	private Cliente propietario;
 	
+	private List<Cliente> duenos;
+	
+	private int precioVenta;
+	
+	private String fechaVenta;
+	
     public Pieza(String codigoPieza, String anoCreacion, String autor, String lugarCreacion,
             String titulo, String fechaConsignacion, int precioCompra, Cliente propietario, String lugar) {
     	
@@ -38,6 +46,10 @@ public class Pieza {
    this.disponible = true;
    this.propietario = propietario;
    this.lugar = lugar;
+   duenos = new ArrayList<Cliente>();
+   duenos.add(propietario);
+   precioVenta = 0;
+   fechaVenta = null;
 }
 	
 	public String getCodigoPieza() {
@@ -106,5 +118,26 @@ public class Pieza {
 	public void setPropietario(Cliente propietario) {
 		this.propietario = propietario;
 	}
+
+	public List<Cliente> getDuenos() {
+		return duenos;
+	}
+
+	public void setPrecioVenta(int precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+
+	public void setFechaVenta(String fechaVenta) {
+		this.fechaVenta = fechaVenta;
+	}
+
+	public int getPrecioVenta() {
+		return precioVenta;
+	}
+
+	public String getFechaVenta() {
+		return fechaVenta;
+	}
+	
 	
 }

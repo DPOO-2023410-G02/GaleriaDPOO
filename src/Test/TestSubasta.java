@@ -4,12 +4,14 @@ import Model.GaleriaDeArte;
 import Usuario.Cliente;
 import java.io.FileWriter;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
 
 import Model.GaleriaDeArte;
 import Model.Inventario;
+import Model.PiezaSubastada;
 import Persistencia.PersistenciaUsuarios;
 import Pieza.Pieza;
 import Usuario.Cliente;
@@ -47,20 +49,20 @@ public class TestSubasta {
         usuarioTest.RealizarConsignacion(usuarioTest.getPasadas().get(0).getCodigoPieza());
         usuarioTest.agregarSaldo(20000000);
         
-        usuarioTest.registrarPieza("1999", "Pedro", "Roma", "TheBorn", 10000000);
+        usuarioTest.registrarPieza("1999", "Pedro", "Roma", "TheBorn2", 10000000);
         usuarioTest.RealizarConsignacion(usuarioTest.getPasadas().get(1).getCodigoPieza() );
         
         
-        usuarioTest.registrarPieza("1998", "Pedro", "Roma", "TheBorn", 10000000);
+        usuarioTest.registrarPieza("1998", "Pedro", "Roma", "TheBorn3", 10000000);
         usuarioTest.RealizarConsignacion(usuarioTest.getPasadas().get(2).getCodigoPieza() );
         
-        usuarioTest.registrarPieza("1959", "Pedro", "Roma", "TheBorn", 10000000);
+        usuarioTest.registrarPieza("1959", "Pedro", "Roma", "TheBorn4", 10000000);
         usuarioTest.RealizarConsignacion(usuarioTest.getPasadas().get(3).getCodigoPieza() );
         
-        usuarioTest.registrarPieza("1129", "Pedro", "Roma", "TheBorn", 10000000);
+        usuarioTest.registrarPieza("1129", "Pedro", "Roma", "TheBorn5", 10000000);
         usuarioTest.RealizarConsignacion(usuarioTest.getPasadas().get(4).getCodigoPieza() );
         
-        usuarioTest.registrarPieza("1569", "Pedro", "Roma", "TheBorn", 10000000);
+        usuarioTest.registrarPieza("1569", "Pedro", "Roma", "TheBorn6", 10000000);
         usuarioTest.RealizarConsignacion(usuarioTest.getPasadas().get(5).getCodigoPieza() );
         
         System.out.println(galeria.getInventario().getCapacidad());
@@ -86,5 +88,45 @@ public class TestSubasta {
         usuarioTest3.ingresarASubasta();
         
         System.out.println(subasta.getClientesSubasta());
+        System.out.println(subasta.getPiezasParaSubastar());
+        System.out.println(subasta.getPiezasSubasta().values());
+        
+        operador.iniciarSubasta();
+        
+        usuarioTest3.realizarOfertaSubasta("TheBorn", 11500000);
+        usuarioTest2.realizarOfertaSubasta("TheBorn", 10100000);
+        
+        
+        HashMap <String, PiezaSubastada> piezasSubasta= subasta.getPiezasSubasta();
+        PiezaSubastada piezaSubasta = piezasSubasta.get("TheBorn");
+        System.out.println(piezaSubasta.getMayorPuja());
+        
+        operador.finalizarSubastaOperador();
+        
+        
+        System.out.println(usuarioTest3.getPasadas());
+        System.out.println(usuarioTest.getPasadas());
+        System.out.println(galeria.getInventario().getPiezasTotales());
+        System.out.println(usuarioTest3.getSaldo());
+        
+        System.out.println(galeria.getSubasta());
+        
+        operador.CrearSubasta();
+        
+        System.out.println(galeria.getSubasta().isInicializacion());
+        operador.iniciarSubasta();
+        System.out.println(galeria.getSubasta().isInicializacion());
+        
+        System.out.println(usuarioTest3.getPasadas().get(0).getPrecioVenta());
+        System.out.println(usuarioTest3.getPasadas().get(0).getFechaVenta());
+        
+//        List<Cliente> clientes = usuarioTest3.getPasadas().get(0).getDuenos();
+//        
+//        for (Cliente cliente: clientes) {
+//        	System.out.println(cliente.getNombre());
+//        }
 	}
+	
+	
+	
 }

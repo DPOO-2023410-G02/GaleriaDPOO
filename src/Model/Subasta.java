@@ -1,5 +1,7 @@
 package Model;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class Subasta {
 		clientesSubasta = new ArrayList<Cliente>();
 		administrador = GaleriaDeArte.getAdministrador();
 		cajero = GaleriaDeArte.getCajero();
+		registrosPujas = new ArrayList<String>();
 	}
 	
 	public void inicializarSubasta()
@@ -41,8 +44,7 @@ public class Subasta {
 	{
 		HashMap<String, PiezaSubastada> piezasSubasta = new HashMap<String , PiezaSubastada>();
 		for(Pieza pieza:  piezasParaSubastar) {
-			piezasSubasta.put(pieza.getTitulo(), new PiezaSubastada(pieza.getPrecioCompra(), (int)(pieza.getPrecioCompra()* 1.1),pieza ) );			
-			
+			piezasSubasta.put(pieza.getTitulo(), new PiezaSubastada(pieza.getPrecioCompra(), (int)(pieza.getPrecioCompra()* 1.1), pieza ) );						
 		}
 		return piezasSubasta;
 		
@@ -75,7 +77,7 @@ public class Subasta {
 	}
 	
 	public void finalizarSubasta() {
-		List<PiezaSubastada> listaPiezasEntrega = (List<PiezaSubastada>) piezasSubasta.values();
+		Collection<PiezaSubastada> listaPiezasEntrega =  piezasSubasta.values();
 		
 		for(PiezaSubastada pieza: listaPiezasEntrega ) {
 			if (pieza.getMayorPuja() > pieza.getValorMinimoVenta() ) {
@@ -90,6 +92,15 @@ public class Subasta {
 				administrador.eliminarPiezaPropietario(piezaEntrega);
 				
 				ganador.añadirPiezas(piezaEntrega);
+				
+				GaleriaDeArte.setSubasta(null);
+				
+				piezaEntrega.getDuenos().add(ganador);
+				
+				piezaEntrega.setPrecioVenta(valorPagado);
+				
+				LocalDate fechaActual = LocalDate.now();
+	        	piezaEntrega.setFechaVenta(fechaActual.toString());
 			}
 		}
 	}
@@ -111,6 +122,20 @@ public class Subasta {
 	public List<Cliente> getClientesSubasta() {
 		return clientesSubasta;
 	}
+
+	
+	public List<Pieza> getPiezasParaSubastar() {
+		return piezasParaSubastar;
+	}
+
+	public HashMap<String, PiezaSubastada> getPiezasSubasta() {
+		return piezasSubasta;
+	}
+
+	public boolean isInicializacion() {
+		return inicializacion;
+	}
+	
 	
 	
 }

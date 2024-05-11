@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.Artista;
 import Model.Compra;
 import Model.GaleriaDeArte;
 import Model.Inventario;
@@ -100,6 +101,7 @@ public class Cliente extends Usuario {
 	public void eliminarPieza(Pieza pieza) {
 		piezas.remove(pieza);
 		añadirPiezasPasadas(pieza);
+		
 	}
 	
 	
@@ -158,9 +160,25 @@ public class Cliente extends Usuario {
         
   
 		Pieza pieza = new Pieza(codigoPieza, anoCreacion, autor, lugarCraecion, titulo, fechaFormateada, precioCompra, this, null);
-        
-	
 		piezas.add(pieza);
+		
+		
+		List<Artista> artistas = GaleriaDeArte.getInventario().getArtistas();
+		Artista artistaDueno = null;		
+		for ( Artista artista: artistas) {
+			if (artista.getNombre().equals(autor)) {
+				 artistaDueno = artista;				
+			}				
+		}
+		if(artistaDueno == null) {
+			Artista nuevoArtista = new Artista(autor);
+			nuevoArtista.agregarPieza(pieza);			
+		}else {
+			artistaDueno.agregarPieza(pieza);
+		}
+	
+		
+		
 	}
 	
 	public void RealizarConsignacion(String codigoPieza) {
