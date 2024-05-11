@@ -50,7 +50,7 @@ public class Subasta {
 	
 	public void verificarClienteSubasta(Cliente cliente) {
 		 boolean llave1 = administrador.verificarUsuarioSubasta(cliente, obtenerValorMinimoPrecioActual());
-		 if(llave1 && inicializacion) {
+		 if(llave1 && !inicializacion) {
 			 clientesSubasta.add(cliente);
 		 }
 	}
