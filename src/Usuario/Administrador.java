@@ -1,5 +1,8 @@
 package Usuario;
 
+import java.util.List;
+
+import Model.Compra;
 import Model.GaleriaDeArte;
 import Model.Inventario;
 import Pieza.Pieza;
@@ -72,4 +75,34 @@ public class Administrador extends Usuario {
     		return true;
     	}
 	}
+	
+	
+	
+	// HISTORIA DE UN CLIENTE
+	
+	public List<Compra> getHistorial(String login){
+		
+		Cliente cliente = (Cliente) GaleriaDeArte.getUsuario(login);
+		List<Compra> compras = cliente.getCompras();
+		
+		return compras;
+		
+	}
+	
+	public List<Pieza> getPiezasCliente(String login){
+		Cliente cliente = (Cliente) GaleriaDeArte.getUsuario(login);
+		List<Pieza> piezasCliente = cliente.getPasadas();
+		return piezasCliente;
+	}
+	
+	public int getValorColeccion(String login) {
+		
+		List<Pieza> piezasCliente = getPiezasCliente(login);
+		int suma = 0;
+		for (Pieza pieza: piezasCliente) {
+			suma += pieza.getPrecioCompra();
+		}
+		return suma;
+	}
+	
 }

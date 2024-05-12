@@ -18,7 +18,7 @@ public class GaleriaDeArte {
 
 	
 	// Mapa de usuarios
-	private Map<String, Usuario> usuarios;
+	private static Map<String, Usuario> usuarios;
 	// inventario
 	private static Inventario inventario;
 	
@@ -65,13 +65,13 @@ public class GaleriaDeArte {
 	}
 
 	//Se obtiene una lista con todos los usuarios
-	public Collection<Usuario> getUsuarios()
+	public static Collection<Usuario> getUsuarios()
 	{
 		return usuarios.values();	
 	}
 	
 	//Se obtiene un usuario en especifico.
-	public Usuario getUsuario(String login) 
+	public static Usuario getUsuario(String login) 
 	{
 		return usuarios.get(login);
 	}

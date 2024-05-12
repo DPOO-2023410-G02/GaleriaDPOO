@@ -18,6 +18,8 @@ public class Compra {
 	private int precio;
 	
 	private Pieza pieza;
+
+	private String fecha;
 	
 	
 	public Compra(Pieza piezaOfertada) {
@@ -26,6 +28,8 @@ public class Compra {
 		cajero = GaleriaDeArte.getCajero();
 		precio = piezaOfertada.getPrecioCompra();
 		pieza = piezaOfertada;
+		LocalDate fechaActual = LocalDate.now();
+		fecha = fechaActual.toString();
 	}
 	
 	
@@ -41,7 +45,7 @@ public class Compra {
         	
         	cajero.registarPago(comprador, piezaOfertada); 
         	
-        	comprador.añadirCompras(this);
+        	comprador.anadirCompras(this);
          	
         	administrador.eliminarPiezaPropietario(piezaOfertada);
         	
@@ -68,6 +72,11 @@ public class Compra {
 
 	public Pieza getPieza() {
 		return pieza;
+	}
+
+
+	public String getFecha() {
+		return fecha;
 	}
 	
 }

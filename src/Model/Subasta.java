@@ -101,6 +101,9 @@ public class Subasta {
 				
 				LocalDate fechaActual = LocalDate.now();
 	        	piezaEntrega.setFechaVenta(fechaActual.toString());
+	        	
+	        	Compra compra = new Compra(piezaEntrega);
+	        	ganador.anadirCompras(compra);
 			}
 		}
 	}

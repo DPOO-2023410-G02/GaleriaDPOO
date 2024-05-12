@@ -10,6 +10,7 @@ import Model.GaleriaDeArte;
 import Model.Inventario;
 import Persistencia.PersistenciaUsuarios;
 import Pieza.Pieza;
+import Usuario.Administrador;
 import Usuario.Cliente;
 import Usuario.Operador;
 import Usuario.Usuario;
@@ -78,8 +79,10 @@ public class Main {
         System.out.println(piezasBodega);
         System.out.println(usuarioTest2.getPasadas());
         System.out.println(inventario.getPiezasPasadas());
+        System.out.println(usuarioTest2.getCompras().get(0).getPieza());
         
-        
+        Administrador admin = galeria.getAdministrador();
+        System.out.println(admin.getHistorial("Juan12").get(0).getPieza());
         
         
         

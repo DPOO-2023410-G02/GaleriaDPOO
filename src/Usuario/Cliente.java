@@ -77,7 +77,7 @@ public class Cliente extends Usuario {
 		return compras;
 	}
 	
-	public void añadirCompras(Compra compra) {
+	public void anadirCompras(Compra compra) {
 		compras.add(compra);
 	}
 	public List<Pieza> getPiezasPasadas() {
@@ -167,13 +167,16 @@ public class Cliente extends Usuario {
 		Artista artistaDueno = null;		
 		for ( Artista artista: artistas) {
 			if (artista.getNombre().equals(autor)) {
-				 artistaDueno = artista;				
+				 artistaDueno = artista;
+				 
 			}				
 		}
-		if(artistaDueno == null) {
+		
+		if(artistaDueno == null) {	
 			Artista nuevoArtista = new Artista(autor);
-			nuevoArtista.agregarPieza(pieza);			
-		}else {
+			nuevoArtista.agregarPieza(pieza);
+			artistas.add(nuevoArtista);
+		}else {			
 			artistaDueno.agregarPieza(pieza);
 		}
 	

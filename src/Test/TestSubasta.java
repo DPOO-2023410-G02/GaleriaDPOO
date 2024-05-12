@@ -1,6 +1,7 @@
 package Test;
 
 import Model.GaleriaDeArte;
+import Usuario.Administrador;
 import Usuario.Cliente;
 import java.io.FileWriter;
 import java.util.Collection;
@@ -45,7 +46,7 @@ public class TestSubasta {
         galeria.AgregarUsuario(usuarioTest3);
         usuarioTest3.agregarSaldo(20000000);
         
-        usuarioTest.registrarPieza("1924", "Pedro", "Roma", "TheBorn", 10000000);
+        usuarioTest.registrarPieza("1924", "Pedro1", "Roma", "TheBorn", 10000000);
         usuarioTest.RealizarConsignacion(usuarioTest.getPasadas().get(0).getCodigoPieza());
         usuarioTest.agregarSaldo(20000000);
         
@@ -97,6 +98,14 @@ public class TestSubasta {
         usuarioTest2.realizarOfertaSubasta("TheBorn", 10100000);
         
         
+        usuarioTest2.realizarOfertaSubasta("TheBorn2", 11100000);
+        usuarioTest2.realizarOfertaSubasta("TheBorn3", 11100000);
+        usuarioTest2.realizarOfertaSubasta("TheBorn4", 11100000);
+        usuarioTest2.realizarOfertaSubasta("TheBorn5", 11100000);
+        usuarioTest2.realizarOfertaSubasta("TheBorn6", 11100000);
+        
+        
+        
         HashMap <String, PiezaSubastada> piezasSubasta= subasta.getPiezasSubasta();
         PiezaSubastada piezaSubasta = piezasSubasta.get("TheBorn");
         System.out.println(piezaSubasta.getMayorPuja());
@@ -119,6 +128,15 @@ public class TestSubasta {
         
         System.out.println(usuarioTest3.getPasadas().get(0).getPrecioVenta());
         System.out.println(usuarioTest3.getPasadas().get(0).getFechaVenta());
+        
+        
+        Inventario inventario  = galeria.getInventario();
+        System.out.println(inventario.getArtistas().get(1).getPiezas());
+        
+        Administrador admin = galeria.getAdministrador();
+        
+        System.out.println(admin.getHistorial("Juan12"));
+        
         
 //        List<Cliente> clientes = usuarioTest3.getPasadas().get(0).getDuenos();
 //        
