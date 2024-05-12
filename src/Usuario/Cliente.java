@@ -34,7 +34,7 @@ public class Cliente extends Usuario {
 	    compras = new ArrayList<Compra>();
 	    piezasPasadas = new ArrayList<Pieza>();
 	    piezas = new ArrayList<Pieza>();
-	    valorMaximo = 1000000;
+	    valorMaximo = 0;
 	    saldo = 0;
 	    generadorCodigos = GeneradorCodigosPieza.getInstance();
 	}
