@@ -70,6 +70,7 @@ public class Inventario {
 			piezasColeccioon.remove(pieza);
 		}
 		piezasPasadas.add(pieza);
+		
 	}
 	
 	public void verificarConsignacionPiezas() {

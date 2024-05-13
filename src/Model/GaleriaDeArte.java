@@ -50,6 +50,14 @@ public class GaleriaDeArte {
 		administrador = new Administrador(password, login, name);
 	}
 	
+	public boolean iniciarSesionAdmin(String nombreUsuario, String password) {
+        // Verificar las credenciales del administrador
+        if (administrador != null && administrador.getLogin().equals(nombreUsuario) && administrador.getPassword().equals(password)) {
+            return true;
+        }
+        return false;
+    }
+	
 	public void AgregarOperador(String password, String login, String name) {
 		operador = new Operador(password, login, name);
 	}

@@ -15,7 +15,7 @@ import Usuario.Cliente;
 import Usuario.Operador;
 import Usuario.Usuario;
 
-public class Main {
+public class MainCompra {
     public static void main(String[] args) {
      
     	//Creacion Galeria 
