@@ -7,6 +7,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         GaleriaDeArte galeria = new GaleriaDeArte();
+        galeria.AgregarAdministrador("Qwer1234", "admin23", "Camilo");
+        galeria.AgregarCajero("Qwer1234", "cajero23", "Ernesto");
+        galeria.AgregarOperador("Qwer1234", "operador23", "Arturo");
         boolean salir = false;
         
         System.out.println("Bienvenido a la galería de arte.");

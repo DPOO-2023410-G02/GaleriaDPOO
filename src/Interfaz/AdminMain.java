@@ -11,7 +11,7 @@ import Usuario.Administrador;
 public class AdminMain {
 
     public static void main(GaleriaDeArte galeria) {
-    	galeria.AgregarAdministrador("Qwer1234", "admin23", "Camilo Sanchez");
+    	
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Inicio de sesión como administrador:");
@@ -38,6 +38,7 @@ public class AdminMain {
                 switch (opcion) {
                     case 1:
                     	System.out.println("Ingrese el login del cliente:");
+                    	scanner.nextLine();
                     	String loginCliente = scanner.nextLine();
                         List<Compra> comprasCliente = galeria.getAdministrador().getHistorial(loginCliente);
                         int contador = 1;
@@ -66,6 +67,7 @@ public class AdminMain {
                         
                     case 3:
                     	System.out.println("Ingrese el login del cliente:");
+                    	scanner.nextLine();
                     	String loginClienteValor= scanner.nextLine();
                         int valorPiezas = galeria.getAdministrador().getValorColeccion(loginClienteValor);
                         

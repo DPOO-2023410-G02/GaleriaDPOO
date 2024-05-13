@@ -63,6 +63,14 @@ public class GaleriaDeArte {
 		operador = new Operador(password, login, name);
 	}
 	
+	public boolean iniciarSesionOperador(String nombreUsuario, String password) {
+        // Verificar las credenciales del administrador
+        if (operador != null && operador.getLogin().equals(nombreUsuario) && operador.getPassword().equals(password)) {
+            return true;
+        }
+        return false;
+    }
+	
 	public void AgregarCajero(String password, String login, String name) {
 		cajero = new Cajero(password, login, name);
 	}

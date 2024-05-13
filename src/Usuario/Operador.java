@@ -51,7 +51,7 @@ public class Operador extends Usuario {
     
     public void agregarPiezaSubasta(String codigoPieza) {
     	Inventario piezas = GaleriaDeArte.getInventario();
-    	Pieza pieza = piezas.getPiezaBodega(codigoPieza);
+    	Pieza pieza = piezas.getPiezaTotal(codigoPieza);
     	piezasSubasta.add(pieza);
     	
     }
