@@ -18,6 +18,7 @@ import Usuario.Operador;
 public class JUnitSubasta {
 
     private static final Cliente CLIENTE_DUENO = new Cliente("12345678", "Juan2312", "Juan Perez");
+    private static final Cliente CLIENTE_DUENO_SUBASTA = new Cliente("12345678", "Juan2312", "Juan Perez");
     private static final Cliente CLIENTE1 = new Cliente("12345678", "Julio4354", "Julio Ojeda");
     private static final Cliente CLIENTE2 = new Cliente("12345678", "Pedro4354", "Pedro Ojeda");
     private static final Cliente CLIENTE3 = new Cliente("12345678", "camilo4354", "Camilo Ojeda");
@@ -94,12 +95,12 @@ public class JUnitSubasta {
     }
     @Test
     public void testSubasta() {
-    	CLIENTE_DUENO.registrarPieza("1999", "Pedro", "Roma", "TheBorn", 10000000);
-        CLIENTE_DUENO.registrarPieza("2000", "Pedro", "Roma", "TheBorn2", 10000000);
-        CLIENTE_DUENO.RealizarConsignacion(CLIENTE_DUENO.getPasadas().get(0).getCodigoPieza());
-        CLIENTE_DUENO.RealizarConsignacion(CLIENTE_DUENO.getPasadas().get(1).getCodigoPieza());
-        operador.agregarPiezaSubasta(CLIENTE_DUENO.getPasadas().get(0).getCodigoPieza());
-        operador.agregarPiezaSubasta(CLIENTE_DUENO.getPasadas().get(1).getCodigoPieza());       
+    	CLIENTE_DUENO_SUBASTA.registrarPieza("1999", "Pedro", "Roma", "TheBorn", 10000000);
+    	CLIENTE_DUENO_SUBASTA.registrarPieza("2000", "Pedro", "Roma", "TheBorn2", 10000000);
+    	CLIENTE_DUENO_SUBASTA.RealizarConsignacion(CLIENTE_DUENO_SUBASTA.getPasadas().get(0).getCodigoPieza());
+    	CLIENTE_DUENO_SUBASTA.RealizarConsignacion(CLIENTE_DUENO_SUBASTA.getPasadas().get(1).getCodigoPieza());
+        operador.agregarPiezaSubasta(CLIENTE_DUENO_SUBASTA.getPasadas().get(0).getCodigoPieza());
+        operador.agregarPiezaSubasta(CLIENTE_DUENO_SUBASTA.getPasadas().get(1).getCodigoPieza());       
        
         operador.CrearSubasta();
        
@@ -132,11 +133,22 @@ public class JUnitSubasta {
     	operador.finalizarSubastaOperador();
     	assertEquals("TheBorn_20000000_"+CLIENTE1.getNombre(),GaleriaDeArte.getRegistrosPorSubasta().get(0).get(0),"No se se realizo correctamente el registro de la puja");
     
+    	//Prueba de que la puja se elimininaron correctamente las piezas del inventario de galeria
     	assertEquals(0,GaleriaDeArte.getInventario().getPiezasTotales().size(),"No se eliminaron las piezas del inventario de galeria");
 
-    	assertEquals(0,GaleriaDeArte.getInventario().getPiezasTotales().size(),"No se eliminaron las piezas del inventario del dueño original");
+    	//Prueba de que la puja se añadieron correctamente las piezas al registro de piezas pasadas de galeria
+    	assertEquals(2,GaleriaDeArte.getInventario().getPiezasPasadas().size(),"No se añadieron las piezas a el registro de la galeria (ppiezas pasadas)");
+    	
+    	//Prueba de que las piezas se entregaron correctamente
+    	assertEquals(1,CLIENTE3.getPasadas().size(),"No se añadieron las piezas al cliente ganador");
+    	assertEquals(1,CLIENTE2.getPasadas().size(),"No se añadieron las piezas al cliente ganador");
+    	assertEquals(0,CLIENTE1.getPasadas().size(),"Se añadieron las piezas al cliente equivocado");
 
-    
+    	//Prueba que se realizaron los tramites correctos para el dueño original de las piezas
+    	assertEquals(2,CLIENTE_DUENO_SUBASTA.getPiezasPasadas().size(),"No se añadieron las piezas al registro de piezas pasadas del dueño original");
+    	assertEquals(0,CLIENTE_DUENO_SUBASTA.getPasadas().size(),"No se eliminaron las piezas del inventario de piezas del dueño original");
+    	
+    	
     }
     
 }
