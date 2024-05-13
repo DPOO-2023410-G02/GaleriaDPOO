@@ -92,5 +92,52 @@ public class JUnitSubasta {
 
         assertEquals(3, galeria.getSubasta().getClientesSubasta().size(), "No se agregaron correctamente todos los clientes a la subasta");
     }
+    @Test
+    public void testSubasta() {
+    	CLIENTE_DUENO.registrarPieza("1999", "Pedro", "Roma", "TheBorn", 10000000);
+        CLIENTE_DUENO.registrarPieza("2000", "Pedro", "Roma", "TheBorn2", 10000000);
+        CLIENTE_DUENO.RealizarConsignacion(CLIENTE_DUENO.getPasadas().get(0).getCodigoPieza());
+        CLIENTE_DUENO.RealizarConsignacion(CLIENTE_DUENO.getPasadas().get(1).getCodigoPieza());
+        operador.agregarPiezaSubasta(CLIENTE_DUENO.getPasadas().get(0).getCodigoPieza());
+        operador.agregarPiezaSubasta(CLIENTE_DUENO.getPasadas().get(1).getCodigoPieza());       
+       
+        operador.CrearSubasta();
+       
+        CLIENTE1.agregarSaldo(50000000);
+        CLIENTE2.agregarSaldo(50000000);
+        CLIENTE3.agregarSaldo(50000000);
+        CLIENTE1.ingresarASubasta();
+        CLIENTE2.ingresarASubasta();
+        CLIENTE3.ingresarASubasta();
+        
+    	operador.iniciarSubasta();
+    	
+    	CLIENTE1.realizarOfertaSubasta("TheBorn", 20000000);
+    	//Prueba de que la puja se registro correctamente
+    	assertEquals(20000000,GaleriaDeArte.getSubasta().getPiezasSubasta().get("TheBorn").getMayorPuja(),"No se registro correctamente la puja mayor.");
+    	
+    	//Prueba de que el ganador se mantiene cuando debe
+    	CLIENTE2.realizarOfertaSubasta("TheBorn", 15000000);
+    	assertEquals(CLIENTE1.getNombre(),GaleriaDeArte.getSubasta().getPiezasSubasta().get("TheBorn").getGanador().getNombre(), "No registra el cliente que va ganando de manera correcta.");
+
+    	//Prueba de que el ganador cambia cuando debe
+    	CLIENTE2.realizarOfertaSubasta("TheBorn", 30000000);
+    	assertEquals(CLIENTE2.getNombre(),GaleriaDeArte.getSubasta().getPiezasSubasta().get("TheBorn").getGanador().getNombre(), "No registra el cliente que va ganando de manera correcta.");
+    	
+    	CLIENTE3.realizarOfertaSubasta("TheBorn2", 40000000);
+    	//Prueba de que la puja se registro correctamente para otra pieza (ofertas multiples)
+    	assertEquals(40000000,GaleriaDeArte.getSubasta().getPiezasSubasta().get("TheBorn2").getMayorPuja(),"No se registro correctamente la puja mayor para ofertas multiples.");
+    	
+    	//Prueba de que la puja se registro correctamente por el operador
+    	operador.finalizarSubastaOperador();
+    	assertEquals("TheBorn_20000000_"+CLIENTE1.getNombre(),GaleriaDeArte.getRegistrosPorSubasta().get(0).get(0),"No se se realizo correctamente el registro de la puja");
+    
+    	assertEquals(0,GaleriaDeArte.getInventario().getPiezasTotales().size(),"No se eliminaron las piezas del inventario de galeria");
+
+    	assertEquals(0,GaleriaDeArte.getInventario().getPiezasTotales().size(),"No se eliminaron las piezas del inventario del dueño original");
+
+    
+    }
+    
 }
 

@@ -64,11 +64,11 @@ public class Subasta {
 		int pujaMayor = pieza.getMayorPuja();
 		int valorInicial = pieza.getValorInicialSubasta();
 		
-		if(puja > pujaMayor && puja > valorInicial && clientesSubasta.contains(cliente)) 
+		if(puja > pujaMayor && puja >= valorInicial && clientesSubasta.contains(cliente)) 
 		{
 		pieza.setMayorPuja(puja);
 		pieza.setGanador(cliente);
-		String registro = operador.registrarPujaCliente(titulo, pujaMayor, cliente);
+		String registro = operador.registrarPujaCliente(titulo, puja, cliente);
 		registrosPujas.add(registro);
 		
 		}
@@ -101,6 +101,8 @@ public class Subasta {
 				
 				LocalDate fechaActual = LocalDate.now();
 	        	piezaEntrega.setFechaVenta(fechaActual.toString());
+	        	
+	        	GaleriaDeArte.getRegistrosPorSubasta().add(registrosPujas);
 	        	
 	        	Compra compra = new Compra(piezaEntrega);
 	        	ganador.anadirCompras(compra);

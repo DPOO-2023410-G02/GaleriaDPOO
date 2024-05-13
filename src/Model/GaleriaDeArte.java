@@ -31,7 +31,7 @@ public class GaleriaDeArte {
 	
 	private static Cajero cajero;
 	
-	private List<List<String>> registrosPorSubasta;
+	private static List<List<String>> registrosPorSubasta;
 	
 	// Se Inicializa una galeria de arte con los contenedores de información
 	public GaleriaDeArte()
@@ -60,7 +60,7 @@ public class GaleriaDeArte {
 	
 	
 	
-	public List<List<String>> getRegistrosPorSubasta() {
+	public static List<List<String>> getRegistrosPorSubasta() {
 		return registrosPorSubasta;
 	}
 
