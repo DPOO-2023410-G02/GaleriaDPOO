@@ -104,7 +104,7 @@ public class TestSubasta {
         usuarioTest2.realizarOfertaSubasta("TheBorn5", 11100000);
         usuarioTest2.realizarOfertaSubasta("TheBorn6", 11100000);
         
-        
+        System.out.println(galeria.getRegistrosPorSubasta());
         
         HashMap <String, PiezaSubastada> piezasSubasta= subasta.getPiezasSubasta();
         PiezaSubastada piezaSubasta = piezasSubasta.get("TheBorn");
