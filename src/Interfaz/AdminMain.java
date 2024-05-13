@@ -50,15 +50,19 @@ public class AdminMain {
                         
                         break;
                     case 2:
-                    	System.out.println("Ingrese el login del cliente:");
-                    	String loginClientePieza = scanner.nextLine();
+                    	System.out.println(galeria.getUsuarios().size());
+                        System.out.println("Ingrese el login del cliente:");
+                        scanner.nextLine(); // Consumir el salto de línea pendiente
+                        String loginClientePieza = scanner.nextLine();
                         List<Pieza> piezasCliente = galeria.getAdministrador().getPiezasCliente(loginClientePieza);
                         int contador2 = 1;
                         for (Pieza pieza : piezasCliente) {
-                            System.out.printf("%d. Título: %s, Precio: %d", contador2,
+                            System.out.printf("%d. Título: %s, Precio: %d%n", contador2,
                                               pieza.getTitulo(), pieza.getPrecioCompra());
                             contador2++;
                         }
+                        break;
+
                         
                     case 3:
                     	System.out.println("Ingrese el login del cliente:");

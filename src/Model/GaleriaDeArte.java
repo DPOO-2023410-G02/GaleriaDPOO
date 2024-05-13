@@ -58,6 +58,7 @@ public class GaleriaDeArte {
         return false;
     }
 	
+	
 	public void AgregarOperador(String password, String login, String name) {
 		operador = new Operador(password, login, name);
 	}
@@ -76,6 +77,15 @@ public class GaleriaDeArte {
 	public static Collection<Usuario> getUsuarios()
 	{
 		return usuarios.values();	
+	}
+	
+	public boolean iniciarSesionCliente(String nombreUsuario, String password) {
+		
+		if(getUsuario(nombreUsuario)!= null && getUsuario(nombreUsuario).getLogin().equals(nombreUsuario) && getUsuario(nombreUsuario).getPassword().equals(password) ) {
+			return true;
+		}		
+		return false;
+		
 	}
 	
 	//Se obtiene un usuario en especifico.

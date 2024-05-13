@@ -120,6 +120,16 @@ public class Inventario {
 		}
 		return piezaElegida;
 	}
+	
+	public Pieza getPiezaTotal(String codigoPieza) {
+		Pieza piezaElegida = null;
+		for (Pieza pieza : getPiezasTotales()) {
+			if (pieza.getCodigoPieza().equals(codigoPieza)){
+				piezaElegida = pieza;
+			}
+		}
+		return piezaElegida;
+	}
 
 	public List<Artista> getArtistas() {
 		return artistas;
