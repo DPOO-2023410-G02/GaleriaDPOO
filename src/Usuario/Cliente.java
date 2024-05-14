@@ -121,16 +121,33 @@ public class Cliente extends Usuario {
 
 	//SUBASTA
 	
-	public void realizarOfertaSubasta( String titulo, int puja) {
+	public void realizarOfertaSubasta ( String titulo, int puja)throws Exception{
 		Subasta subasta = GaleriaDeArte.getSubasta();
-		
-		subasta.registrarOfertaSubasta(titulo, puja, this);
-		
+		 if (subasta == null) {
+	         throw new Exception("No se puede acceder a la subasta dado que la subasta no se ah creado.");
+		 }
+		 else if (Boolean.TRUE.equals(subasta.isInicializacion())) {
+	         throw new Exception("No se puede acceder a la subasta dado que ya hay una transcurriendo.");
+		 }
+		 else if (!subasta.getPiezasSubasta().containsKey(titulo)) {
+	         throw new Exception("No existe la pieza a la que se quiere subastar");
+		 }
+		 else {
+			 subasta.registrarOfertaSubasta(titulo, puja, this);
+		 }
 	}
 	
-	public void ingresarASubasta() {
+	public void ingresarASubasta() throws Exception{
 		Subasta subasta = GaleriaDeArte.getSubasta();
-		subasta.verificarClienteSubasta(this);
+		 if (subasta == null) {
+	         throw new Exception("No se puede acceder a la subasta dado que la subasta no se ah creado.");
+		 }
+		 else if (Boolean.TRUE.equals(subasta.isInicializacion())) {
+	         throw new Exception("No se puede acceder a la subasta dado que ya hay una transcurriendo.");
+		 }
+		 else {
+			 subasta.verificarClienteSubasta(this);
+		 }
 	}
 	
 	public void registrarPieza(String anoCreacion, String autor, String lugarCraecion, String titulo, int precioCompra) {

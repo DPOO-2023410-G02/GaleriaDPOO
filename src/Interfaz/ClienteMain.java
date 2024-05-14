@@ -184,7 +184,11 @@ public class ClienteMain {
                 case 8:
 
                     Cliente clienteSubasta = (Cliente) galeria.getUsuario(nombreUsuarioAutenticado);
-                    clienteSubasta.ingresarASubasta();
+                    try {
+                    	clienteSubasta.ingresarASubasta();
+                    } catch (Exception e) {
+                        System.out.println("Error al ingresar a la subasta: " + e.getMessage());
+                    }
                     break;
                 case 9:
                     Cliente clientePuja = (Cliente) galeria.getUsuario(nombreUsuarioAutenticado);
@@ -215,7 +219,13 @@ public class ClienteMain {
                             scanner.nextLine(); // Limpiar el buffer después de nextInt()
 
                             // Realizar la oferta de subasta
-                            clientePuja.realizarOfertaSubasta(tituloPieza, valorPuja);
+                            try {
+                            	clientePuja.realizarOfertaSubasta(tituloPieza, valorPuja);
+                            } catch (Exception e) {
+                                System.out.println("Error al pujar en la subasta: " + e.getMessage());
+                            }
+                            
+                        
                         } else {
                             System.out.println("La pieza no fue encontrada en la subasta. Verifique el título e intente nuevamente.");
                         }
